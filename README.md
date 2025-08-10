@@ -7,20 +7,25 @@ Includes a complete installation and configuration guide to enable advanced swip
 
 ## ✨ Features
 - **3-Finger Gestures:**
-  - Swipe down → Minimize window
-  - Swipe up → Show Activities Overview
-  - Swipe left/right → Switch between windows
+  - Swipe down → Minimize current window
+  - Swipe up → Maximize current window
+  - Swipe left → Previous window
+  - Swipe right → Next window
   - Swipe left_down → Close current window
   - Swipe right_down → Open VS Code
-  - Swipe right_up → Open SnapTube Audio folder
   - Swipe left_up → Open Google Chrome
+  - Swipe right_up → Open SnapTube Audio folder
   - Pinch in/out → Volume control
 
 - **4-Finger Gestures:**
   - Swipe down → Show Activities Overview
-  - Swipe up → Show Applications/Dock
-  - Swipe left/right → Snap window to side
-  - Swipe left_down/right_down → Switch workspace
+  - Swipe up → Show Dock / Applications
+  - Swipe left → Snap window to left
+  - Swipe right → Snap window to right
+  - Swipe left_down → Minimize current window
+  - Swipe left_up → Switch to previous workspace
+  - Swipe right_up → Switch to next workspace
+  - Swipe right_down → Take a screenshot (interactive)
   - Pinch in/out → Screen brightness control
 
 ---
@@ -29,13 +34,13 @@ Includes a complete installation and configuration guide to enable advanced swip
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/<your-username>/kali-touchpad-gestures.git
+   git clone https://github.com/Kunal-Rathore/kali-gestures-automation.git
    cd kali-touchpad-gestures
    ```
 
 2. **Follow the setup guide**:
    ```bash
-   nano kali-gestures-setup.txt
+   gedit kali-gestures-setup.txt
    ```
    Copy-paste commands into your terminal to install dependencies, configure gestures, and enable auto-start.
 
