@@ -1,0 +1,70 @@
+# ====================================================
+# Kali Linux Custom Touchpad Gestures Setup Guide
+# Author: <Your Name>
+# ====================================================
+# This guide sets up libinput-gestures with custom swipe
+# and pinch actions for productivity on Kali Linux.
+# Works on GNOME X11.
+# ====================================================
+
+# 1. Install Dependencies
+sudo apt update && sudo apt install -y xdotool wmctrl libinput-tools code google-chrome-stable
+
+# 2. Add User to 'input' Group
+sudo gpasswd -a $USER input
+newgrp input
+# (Log out and log back in if gestures don’t work)
+
+# 3. Install libinput-gestures
+git clone https://github.com/bulletmark/libinput-gestures.git
+cd libinput-gestures
+sudo make install
+cd ..
+rm -rf libinput-gestures
+
+# 4. Enable Autostart
+libinput-gestures-setup autostart
+
+# 5. Create/Edit Gesture Config
+mkdir -p ~/.config
+nano ~/.config/libinput-gestures.conf
+
+# Paste the following configuration:
+
+# --- 3 Fingers ---
+gesture swipe down       3 xdotool key super+Down
+gesture swipe up         3 xdotool key super
+gesture swipe left       3 xdotool key alt+Tab
+gesture swipe right      3 xdotool key shift+alt+Tab
+gesture swipe left_down  3 xdotool key ctrl+w
+gesture swipe right_down 3 code
+gesture swipe right_up   3 xdg-open "/mnt/7CB5FF1E5811B8CD/PC/SnapTube Audio"
+gesture swipe left_up    3 google-chrome
+gesture pinch out        3 xdotool key XF86AudioRaiseVolume
+gesture pinch in         3 xdotool key XF86AudioLowerVolume
+
+# --- 4 Fingers ---
+gesture swipe down       4 xdotool key super
+gesture swipe up         4 xdotool key super+a
+gesture swipe left       4 xdotool key super+Left
+gesture swipe right      4 xdotool key super+Right
+gesture swipe left_down  4 xdotool key ctrl+alt+Left
+gesture swipe right_down 4 xdotool key ctrl+alt+Right
+gesture pinch out        4 xdotool key XF86MonBrightnessUp
+gesture pinch in         4 xdotool key XF86MonBrightnessDown
+
+# Save file (CTRL+O, Enter, CTRL+X)
+
+# 6. Restart Gesture Service
+libinput-gestures-setup restart
+
+# 7. (Optional) Check Debug Output
+libinput-gestures -d
+
+# ====================================================
+# Usage Notes:
+# - Gestures start automatically at login.
+# - Edit gestures anytime via:
+#   nano ~/.config/libinput-gestures.conf
+#   libinput-gestures-setup restart
+# ====================================================
