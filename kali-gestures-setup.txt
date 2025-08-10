@@ -1,6 +1,6 @@
 # ====================================================
 # Kali Linux Custom Touchpad Gestures Setup Guide
-# Author: <Your Name>
+# Author: <Kunal Rathore>
 # ====================================================
 # This guide sets up libinput-gestures with custom swipe
 # and pinch actions for productivity on Kali Linux.
@@ -13,7 +13,7 @@ sudo apt update && sudo apt install -y xdotool wmctrl libinput-tools code google
 # 2. Add User to 'input' Group
 sudo gpasswd -a $USER input
 newgrp input
-# (Log out and log back in if gestures don’t work)
+# (Restart system if gestures don’t work)
 
 # 3. Install libinput-gestures
 git clone https://github.com/bulletmark/libinput-gestures.git
@@ -27,33 +27,73 @@ libinput-gestures-setup autostart
 
 # 5. Create/Edit Gesture Config
 mkdir -p ~/.config
-nano ~/.config/libinput-gestures.conf
+gedit ~/.config/libinput-gestures.conf
 
 # Paste the following configuration:
-
 # --- 3 Fingers ---
-gesture swipe down       3 xdotool key super+Down
-gesture swipe up         3 xdotool key super
+# Swipe down = minimize current window
+gesture swipe down       3 xdotool key super+h
+
+# Swipe up = maximize current window
+gesture swipe up         3 xdotool key super+Up
+
+# Swipe left = previous window
 gesture swipe left       3 xdotool key alt+Tab
+
+# Swipe right = next window
 gesture swipe right      3 xdotool key shift+alt+Tab
-gesture swipe left_down  3 xdotool key ctrl+w
+
+# Swipe left down = close current window
+gesture swipe left_down  3 xdotool key alt+F4
+
+# Swipe right down = open VS Code
 gesture swipe right_down 3 code
-gesture swipe right_up   3 xdg-open "/mnt/7CB5FF1E5811B8CD/PC/SnapTube Audio"
+
+# Swipe left up = open Google Chrome
 gesture swipe left_up    3 google-chrome
+
+# Swipe right up = open SnapTube Audio folder
+gesture swipe right_up   3 xdg-open "/mnt/7CB5FF1E5811B8CD/PC/SnapTube Audio"
+
+# Pinch out (zoom in) = increase volume
 gesture pinch out        3 xdotool key XF86AudioRaiseVolume
+
+# Pinch in (zoom out) = decrease volume
 gesture pinch in         3 xdotool key XF86AudioLowerVolume
 
+
 # --- 4 Fingers ---
+# Swipe down = show all active windows (Activities Overview)
 gesture swipe down       4 xdotool key super
+
+# Swipe up = show dock / applications
 gesture swipe up         4 xdotool key super+a
+
+# Swipe left = snap window to left
 gesture swipe left       4 xdotool key super+Left
+
+# Swipe right = snap window to right
 gesture swipe right      4 xdotool key super+Right
-gesture swipe left_down  4 xdotool key ctrl+alt+Left
-gesture swipe right_down 4 xdotool key ctrl+alt+Right
+
+# Swipe left down = minimize current window
+gesture swipe left_down  4 xdotool key super+Down
+
+# Swipe left up = switch to previous workspace
+gesture swipe left_up    4 xdotool key ctrl+alt+Left
+
+# Swipe right up = switch to next workspace
+gesture swipe right_up   4 xdotool key ctrl+alt+Right
+
+# Swipe right down = take a screenshot (new action)
+gesture swipe right_down 4 gnome-screenshot -i
+
+# Pinch out (zoom in) = increase brightness
 gesture pinch out        4 xdotool key XF86MonBrightnessUp
+
+# Pinch in (zoom out) = decrease brightness
 gesture pinch in         4 xdotool key XF86MonBrightnessDown
 
-# Save file (CTRL+O, Enter, CTRL+X)
+# Save file and close editor
 
 # 6. Restart Gesture Service
 libinput-gestures-setup restart
@@ -65,6 +105,6 @@ libinput-gestures -d
 # Usage Notes:
 # - Gestures start automatically at login.
 # - Edit gestures anytime via:
-#   nano ~/.config/libinput-gestures.conf
+#   gedit ~/.config/libinput-gestures.conf
 #   libinput-gestures-setup restart
 # ====================================================
