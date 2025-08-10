@@ -35,7 +35,7 @@ Includes a complete installation and configuration guide to enable advanced swip
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Kunal-Rathore/kali-gestures-automation.git
-   cd kali-touchpad-gestures
+   cd kali-gestures-automation
    ```
 
 2. **Follow the setup guide**:
